@@ -8,21 +8,25 @@
     <property name="dist" location="dist"/>
     <property name="doc.dir" location="doc"/>
 
-    <target name="init">
+    <target name="init" description="setup project directories">
         <!-- Create the time stamp -->
         <tstamp/>
         <!-- Create the build directory structure used by compile -->
         <mkdir dir="${build}"/>
+        <mkdir dir="${doc.dir}" />
     </target>
 
-    <target name="compile" depends="init"
-            description="compile the source">
+    <target name="compile" depends="init" description="compile the source">
         <!-- Compile the Java code from ${src} into ${build} -->
         <javac srcdir="${src}" destdir="${build}"/>
     </target>
 
-    <target name="dist" depends="compile"
-            description="generate the distribution">
+    <!-- Generate javadocs for current project into ${doc.dir} -->
+    <target name="doc" depends="init" description="generate documentation">
+        <javadoc sourcepath="${src}" destdir="${doc.dir}" />
+    </target>
+
+    <target name="dist" depends="compile" description="generate the distribution">
         <!-- Create the distribution directory -->
         <mkdir dir="${dist}/lib"/>
 
@@ -30,10 +34,13 @@
         <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
     </target>
 
-    <target name="clean"
-            description="clean up">
+    <target name="clean" description="clean up workspace">
         <!-- Delete the ${build} and ${dist} directory trees -->
         <delete dir="${build}"/>
         <delete dir="${dist}"/>
+        <delete dir="${doc.dir}"/>
+        <delete>
+            <fileset defaultexcludes="no" dir="${src}" includes="**/*~" />
+        </delete>
     </target>
 </project>
