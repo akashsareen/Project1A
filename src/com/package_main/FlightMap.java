@@ -1,4 +1,4 @@
-package com.company;
+package com.package_main;
 
 public class FlightMap {
 }

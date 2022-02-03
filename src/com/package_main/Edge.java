@@ -1,6 +1,4 @@
-package com.company;
-
-import java.util.ArrayList;
+package com.package_main;
 
 public class Edge {
     public String destination;
