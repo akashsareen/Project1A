@@ -21,8 +21,9 @@
         <javac srcdir="${src}" destdir="${build}"/>
     </target>
 
-    <!-- Generate javadocs for current project into ${doc.dir} -->
+
     <target name="doc" depends="init" description="generate documentation">
+        <!-- Generate javadocs for current project into ${doc.dir} -->
         <javadoc sourcepath="${src}" destdir="${doc.dir}" />
     </target>
 

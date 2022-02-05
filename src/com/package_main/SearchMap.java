@@ -41,7 +41,9 @@ public class SearchMap {
     public static void main(String[] args) {
 	// write your code here
         readFile();
-        FlightMap.buildFlightMap(edges);
+        for(Edge edge: edges){
+            System.out.println(edge.origin + " " + edge.destination + " " + edge.cost);
+        }
 
     }
 }
